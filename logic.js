@@ -3,13 +3,14 @@ class Person {
     constructor(name, preTaxAmount) {
         this.name = name
         this.preTaxAmount = preTaxAmount
+
+        this.contributionAmt = null
     }
 
-    portionOf(preTax, postTip) {
+    calculatePortion(preTaxTotal, postTipTotal) {
         // contribution to the post-tip amount that this Person must pay
         // based on their contribution to the pre-tax amount
-        return (this.preTaxAmount / preTax * postTip)
-
+        this.contributionAmt = this.preTaxAmount / preTaxTotal * postTipTotal
     }
 }
 
@@ -42,7 +43,7 @@ class Bill {
             this.tipAmt = (this.tipPctPreTax / 100) * this.preTaxTotal
             this.tipPctPostTax = 100 * this.tipAmt / this.postTaxTotal
 
-            
+
         }
         this.postTipTotal = this.postTaxTotal + this.tipAmt
     }
@@ -65,39 +66,60 @@ class Bill {
     }
 }
 
-// get all people from frontend and turn them into a list of Person objects
-personList = []
+function computeBill() {
+    // create empty people array
+    personList = []
+    // get all "person" elements from frontend
+    frontendList = document.getElementsByClassName("person-line")
+    // convert the html collection to an array
+    frontendList = Array.prototype.slice.call(frontendList)
+    // for each "person" on that list, create a person object with right params
+    frontendList.forEach(person => {
+        personName = person.childNodes[3].value
+        personTotal = person.childNodes[7].value
 
-personList.push(new Person("Dan", 19.45))
-personList.push(new Person("Anoush", 16))
+        // put these into a person object and append to a person list!
+        personList.push(new Person(personName, parseFloat(personTotal)))
+        // console.log(personName)
+        // console.log(personTotal)
+    })
 
-// get tax amount from frontend
-function getTaxFromFrontend() {
-    return 3.01
-}
+    // get tax amount from frontend
+    function getTaxFromFrontend() {
+        return parseFloat(document.getElementById("tax-line").childNodes[3].value)
+    }
 
-// calculate pre-tax total from list of Person objects
-// credit:
-// https://bobbyhadz.com/blog/javascript-get-sum-of-array-object-values
-preTax = personList.reduce((accumulator, object) => {
-    return accumulator + object.preTaxAmount
-}, 0)
+    // calculate pre-tax total from list of Person objects
+    // credit:
+    // https://bobbyhadz.com/blog/javascript-get-sum-of-array-object-values
+    preTax = personList.reduce((accumulator, object) => {
+        return accumulator + object.preTaxAmount
+    }, 0)
 
-// initialize Bill object
-thisBill = new Bill(preTax, getTaxFromFrontend())
+    // initialize Bill object
+    thisBill = new Bill(preTax, getTaxFromFrontend())
 
-// logic for tipping based on frontend selection
-// function to determine which tip handling Bill method to call
+    // logic for tipping based on frontend selection
+    // function to determine which tip handling Bill method to call
+    tipMethod = document.getElementById("tip-line").childNodes[1].value
+    tipValue = parseFloat(document.getElementById("tip-line").childNodes[3].value)
 
-// display pre-tax, tax, post-tax, tip (h), post-tip (h) amounts, and
-// portionOf (h) for each person
-// function to read fields from the Bill object
-function testPrintBillFields(bill) {
-    console.log("subtotal: " + bill.preTaxTotal)
-    console.log("tax: " + bill.taxAmt)
-    console.log("post-tax: " + bill.postTaxTotal)
-    console.log("tip: " + bill.tipAmt)
-    console.log("tip percent pre-tax: " + bill.tipPctPreTax)
-    console.log("tip percent post-tax: " + bill.tipPctPostTax)
-    console.log("TOTAL: " + bill.postTipTotal)
+    if (tipMethod == "preTaxPct") {
+        thisBill.computeTipFromPercent(tipValue, false)
+    } else if (tipMethod == "postTaxPct") {
+        thisBill.computeTipFromPercent(tipValue, true)
+    } else if (tipMethod == "tipAmt") {
+        thisBill.computeTipFromAmt(tipValue)
+    } else if (tipMethod == "totalAmt") {
+        thisBill.computeTipFromTotal(tipValue)
+    }
+
+    // thisBill.computeTipFromAmt(8)
+
+    // compute each person's contribution amount
+    personList.forEach(person => {
+        person.calculatePortion(thisBill.preTaxTotal, thisBill.postTipTotal)
+    })
+
+    return [personList, thisBill]
 }
