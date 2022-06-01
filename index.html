@@ -35,13 +35,13 @@
 
             <div class="input-group" id="tip-line">
                 <select class="form-select" id="inputGroupSelect02">
-                  <option value="preTaxPct">Pre-Tax %</option>
-                  <option value="postTaxPct">Post-Tax %</option>
-                  <option value="tipAmt">Tip $</option>
-                  <option value="totalAmt">Total $</option>
+                    <option value="preTaxPct">Pre-Tax %</option>
+                    <option value="postTaxPct">Post-Tax %</option>
+                    <option value="tipAmt">Tip $</option>
+                    <option value="totalAmt">Total $</option>
                 </select>
                 <input type="number" aria-label="Last name" class="form-control">
-              </div>
+            </div>
 
         </div>
         <div class="row">
@@ -59,6 +59,15 @@
 
     <script src="logic.js"></script>
     <script src="ui.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+            // new Darkmode().showWidget();
+            new Darkmode();
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
 
 </body>
 
