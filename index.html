@@ -64,9 +64,19 @@
     <script>
         function addDarkmodeWidget() {
             // new Darkmode().showWidget();
-            new Darkmode();
+            const darkmode = new Darkmode();
         }
         window.addEventListener('load', addDarkmodeWidget);
+
+        window.matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', event => {
+                darkmode.toggle();
+                // if (event.matches) {
+                //     //dark mode
+                // } else {
+                //     //light mode
+                // }
+            })
     </script>
 
 </body>
