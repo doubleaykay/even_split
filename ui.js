@@ -1,6 +1,10 @@
 function addAnotherPersonToFrontend() {
-    node = document.getElementById("person-line-element")
-    document.getElementById("people-list-container").appendChild(node.cloneNode(true))
+    // node = document.getElementById("person-line-element")
+    // document.getElementById("people-list-container").appendChild(node.cloneNode(true))
+
+    people_container = document.querySelector("#people-list-container")
+    template = document.querySelector("#person_row_template")
+    people_container.appendChild(template.content.cloneNode(true))
 }
 
 // display pre-tax, tax, post-tax, tip (h), post-tip (h) amounts, and
