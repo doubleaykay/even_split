@@ -66,6 +66,34 @@ class Bill {
     }
 }
 
+function parseFrontendCurrency(frontendCurrency) {
+    // initiate regex instance
+    regex = new RegExp(/^\$?((\d*(\.\d\d)?)|(\.\d\d))$/)
+
+    // check if input string matches regex
+    // if yes, then parse it
+    // if no, throw an error
+    if (regex.test(frontendCurrency)) {
+
+        // check if currency has cents and parse accordingly
+        if (frontendCurrency.includes(".")) {
+            dollars = parseInt(frontendCurrency.split(".")[0])
+            console.log(dollars)
+            cents = parseInt(frontendCurrency.split(".")[1])
+            console.log(cents)
+            amountDinero = dollars * 100 + cents
+            console.log(amountDinero)
+        } else {
+            amountDinero = parseInt(frontendCurrency) * 100
+            console.log(amountDinero)
+        }
+
+        return Dinero({ amount: amountDinero, currency: 'USD' })
+    } else {
+        console.log("Input did not pass regex!")
+    }
+}
+
 function computeBill() {
     // create empty people array
     personList = []
