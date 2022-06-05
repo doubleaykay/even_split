@@ -12,17 +12,16 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>Even Split</h1>
-        </div>
-        <div class="row">
 
             <div class="col">
+                <h1 class="mt-2">People</h1>
+
                 <div class="people" id="people-list-container">
 
                     <div class="input-group person-line" id="person-line-element">
                         <span class="input-group-text">Name</span>
                         <input type="text" aria-label="First name" class="form-control" id="person-name-field">
-                        <span class="input-group-text">Pre-Tax Total</span>
+                        <span class="input-group-text">Pre-Tax $</span>
                         <input type="number" aria-label="Last name" min="0.01" step="0.01" class="form-control">
                     </div>
 
@@ -61,7 +60,8 @@
 
         <div class="row">
             <div class="col">
-                <div class="mt-2" id="results"></div>
+                <h1 class="mt-2">Results</h1>
+                <p class="mt-2" id="results">Enter each person and their pre-tax $, then press compute!</p>
             </div>
         </div>
     </div>
