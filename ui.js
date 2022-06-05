@@ -1,7 +1,4 @@
 function addAnotherPersonToFrontend() {
-    // node = document.getElementById("person-line-element")
-    // document.getElementById("people-list-container").appendChild(node.cloneNode(true))
-
     people_container = document.querySelector("#people-list-container")
     template = document.querySelector("#person_row_template")
     people_container.appendChild(template.content.cloneNode(true))
@@ -14,34 +11,13 @@ function displayResults(people, bill) {
     results_string = "subtotal: " + bill.preTaxTotal.toFormat('$0,0.00') + "<br>" + "tax: " + bill.taxAmt.toFormat('$0,0.00') + "<br>" + "post-tax: " + bill.postTaxTotal.toFormat('$0,0.00') + "<br>" + "tip: " + bill.tipAmt.toFormat('$0,0.00') + "<br>" + "tip percent pre-tax: " + bill.tipPctPreTax + "<br>" + "tip percent post-tax: " + bill.tipPctPostTax + "<br>" + "TOTAL: " + bill.postTipTotal.toFormat('$0,0.00') + "<br>"
 
     resultsDiv = document.getElementById("results")
-    // br = document.createElement("br")
-
-    // resultsDiv.appendChild(document.createTextNode("subtotal: " + bill.preTaxTotal + "\n"))
-    // resultsDiv.appendChild(br)
-    // resultsDiv.appendChild(document.createTextNode("tax: " + bill.taxAmt + "\n"))
-    // resultsDiv.appendChild(br)
-    // resultsDiv.appendChild(document.createTextNode("post-tax: " + bill.postTaxTotal + "\n"))
-    // resultsDiv.appendChild(br)
-    // resultsDiv.appendChild(document.createTextNode("tip: " + bill.tipAmt + "\n"))
-    // resultsDiv.appendChild(br)
-    // resultsDiv.appendChild(document.createTextNode("tip percent pre-tax: " + bill.tipPctPreTax + "\n"))
-    // resultsDiv.appendChild(br)
-    // resultsDiv.appendChild(document.createTextNode("tip percent post-tax: " + bill.tipPctPostTax + "\n"))
-    // resultsDiv.appendChild(br)
-    // resultsDiv.appendChild(document.createTextNode("TOTAL: " + bill.postTipTotal + "\n"))
-    // resultsDiv.appendChild(br)
 
     people.forEach(e => {
-        // resultsDiv.appendChild(document.createTextNode(e.name + " pays $" + e.contributionAmt + "\n"))
-        // resultsDiv.appendChild(br)
-
         results_string = results_string + e.name + " pays " + e.contributionAmt.toFormat('$0,0.00') + "<br>"
     })
 
     resultsDiv.innerHTML = results_string
     console.log(results.string)
-    // console.log("Dan contribution: " + personList[0].contributionAmt)
-    // console.log("Anoush contribution: " + personList[1].contributionAmt)
 }
 
 function testPrintBillFields(people, bill) {
@@ -57,8 +33,6 @@ function testPrintBillFields(people, bill) {
         console.log(e.name)
         console.log(e.contributionAmt)
     })
-    // console.log("Dan contribution: " + personList[0].contributionAmt)
-    // console.log("Anoush contribution: " + personList[1].contributionAmt)
 }
 
 function runLogic() {
