@@ -11,7 +11,7 @@ function addAnotherPersonToFrontend() {
 // portionOf (h) for each person
 // function to read fields from the Bill object
 function displayResults(people, bill) {
-    results_string = "subtotal: " + bill.preTaxTotal + "<br>" + "tax: " + bill.taxAmt + "<br>" + "post-tax: " + bill.postTaxTotal + "<br>" + "tip: " + bill.tipAmt + "<br>" + "tip percent pre-tax: " + bill.tipPctPreTax + "<br>" + "tip percent post-tax: " + bill.tipPctPostTax + "<br>" + "TOTAL: " + bill.postTipTotal + "<br>"
+    results_string = "subtotal: " + bill.preTaxTotal.toFormat('$0,0.00') + "<br>" + "tax: " + bill.taxAmt.toFormat('$0,0.00') + "<br>" + "post-tax: " + bill.postTaxTotal.toFormat('$0,0.00') + "<br>" + "tip: " + bill.tipAmt.toFormat('$0,0.00') + "<br>" + "tip percent pre-tax: " + bill.tipPctPreTax + "<br>" + "tip percent post-tax: " + bill.tipPctPostTax + "<br>" + "TOTAL: " + bill.postTipTotal.toFormat('$0,0.00') + "<br>"
 
     resultsDiv = document.getElementById("results")
     // br = document.createElement("br")
@@ -35,7 +35,7 @@ function displayResults(people, bill) {
         // resultsDiv.appendChild(document.createTextNode(e.name + " pays $" + e.contributionAmt + "\n"))
         // resultsDiv.appendChild(br)
 
-        results_string = results_string + e.name + " pays $" + e.contributionAmt + "<br>"
+        results_string = results_string + e.name + " pays " + e.contributionAmt.toFormat('$0,0.00') + "<br>"
     })
 
     resultsDiv.innerHTML = results_string
