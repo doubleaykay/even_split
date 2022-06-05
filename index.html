@@ -11,12 +11,12 @@
 
 <body>
     <div class="container">
-        <div class="container">
+        <div class="row">
             <h1>Even Split</h1>
         </div>
         <div class="row">
 
-            <div class="card">
+            <div class="col">
                 <div class="people" id="people-list-container">
 
                     <div class="input-group person-line" id="person-line-element">
@@ -37,15 +37,15 @@
                     </div>
                 </template>
 
-                <button type="button" class="btn btn-secondary" onclick="addAnotherPersonToFrontend()">add
+                <button type="button" class="btn btn-secondary mt-2" onclick="addAnotherPersonToFrontend()">add
                     person</button>
 
-                <div class="input-group" id="tax-line">
+                <div class="input-group mt-2" id="tax-line">
                     <span class="input-group-text">Tax $</span>
                     <input type="number" aria-label="Last name" min="0.01" step="0.01" class="form-control">
                 </div>
 
-                <div class="input-group" id="tip-line">
+                <div class="input-group mt-2" id="tip-line">
                     <select class="form-select" id="inputGroupSelect02">
                         <option value="preTaxPct">Pre-Tax %</option>
                         <option value="postTaxPct">Post-Tax %</option>
@@ -54,16 +54,15 @@
                     </select>
                     <input type="number" aria-label="Last name" class="form-control">
                 </div>
+
+                <button type="button" class="btn btn-success mt-2" onclick="runLogic()">compute</button>
             </div>
-
-
-
         </div>
+
         <div class="row">
-            <button type="button" class="btn btn-success" onclick="runLogic()">compute</button>
-        </div>
-        <div class="row">
-            <div id="results"></div>
+            <div class="col">
+                <div class="mt-2" id="results"></div>
+            </div>
         </div>
     </div>
 
