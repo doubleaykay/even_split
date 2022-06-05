@@ -22,7 +22,7 @@
                         <span class="input-group-text">Name</span>
                         <input type="text" aria-label="First name" class="form-control" id="person-name-field">
                         <span class="input-group-text">Pre-Tax $</span>
-                        <input type="number" aria-label="Last name" min="0.01" step="0.01" class="form-control">
+                        <input type="number" pattern="\d*" min="0.01" step="0.01" class="form-control">
                     </div>
 
                 </div>
@@ -32,7 +32,7 @@
                         <span class="input-group-text">Name</span>
                         <input type="text" aria-label="First name" class="form-control" id="person-name-field">
                         <span class="input-group-text">Pre-Tax Total</span>
-                        <input type="number" aria-label="Last name" min="0.01" step="0.01" class="form-control">
+                        <input type="number" pattern="\d*" min="0.01" step="0.01" class="form-control">
                     </div>
                 </template>
 
@@ -41,7 +41,7 @@
 
                 <div class="input-group mt-2" id="tax-line">
                     <span class="input-group-text">Tax $</span>
-                    <input type="number" aria-label="Last name" min="0.01" step="0.01" class="form-control">
+                    <input type="number" pattern="\d*" min="0.01" step="0.01" class="form-control">
                 </div>
 
                 <div class="input-group mt-2" id="tip-line">
@@ -51,7 +51,7 @@
                         <option value="tipAmt">Tip $</option>
                         <option value="totalAmt">Total $</option>
                     </select>
-                    <input type="number" aria-label="Last name" class="form-control">
+                    <input type="number" pattern="\d*" class="form-control">
                 </div>
 
                 <button type="button" class="btn btn-success mt-2" onclick="runLogic()">compute</button>
