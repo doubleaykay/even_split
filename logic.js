@@ -102,8 +102,8 @@ function computeBill() {
     frontendList = Array.prototype.slice.call(frontendList)
     // for each "person" on that list, create a person object with right params
     frontendList.forEach(person => {
-        personName = person.childNodes[3].value
-        personTotal = parseFrontendCurrency(person.childNodes[7].value)
+        personName = person.childNodes[1].value
+        personTotal = parseFrontendCurrency(person.childNodes[3].value)
 
         // put these into a person object and append to a person list!
         personList.push(new Person(personName, personTotal))
