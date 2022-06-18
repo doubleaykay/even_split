@@ -4,6 +4,17 @@ function addAnotherPersonToFrontend() {
     people_container.appendChild(template.content.cloneNode(true))
 }
 
+// format currency input to be correct always
+// kudos https://stackoverflow.com/a/50722629
+function formatFrontendCurrency(e) {
+    const value = e.value.replace(/,/g, '');
+    e.value = parseFloat(value).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+    });
+}
+
 // display pre-tax, tax, post-tax, tip (h), post-tip (h) amounts, and
 // portionOf (h) for each person
 // function to read fields from the Bill object
