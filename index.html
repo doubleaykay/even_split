@@ -21,10 +21,8 @@
                 <div class="people" id="people-list-container">
 
                     <div class="input-group person-line" id="person-line-element">
-                        <span class="input-group-text">Name</span>
-                        <input type="text" class="form-control" id="person-name-field">
-                        <span class="input-group-text">Pre-Tax $</span>
-                        <input type="number" pattern="[0-9]*" inputmode="decimal" min="0.01" step="0.01"
+                        <input type="text" class="form-control" placeholder="Name" id="person-name-field">
+                        <input type="number" placeholder="Pre-Tax $" pattern="[0-9]*" inputmode="decimal" min="0.01" step="0.01"
                             class="form-control">
                         <button type="button" class="btn btn-danger" onclick="this.parentNode.remove()"><i
                                 class="bi bi-trash-fill"></i></button>
@@ -34,10 +32,8 @@
 
                 <template id="person_row_template">
                     <div class="input-group person-line mt-2" id="person-line-element">
-                        <span class="input-group-text">Name</span>
-                        <input type="text" class="form-control" id="person-name-field">
-                        <span class="input-group-text">Pre-Tax $</span>
-                        <input type="number" pattern="[0-9]*" inputmode="decimal" min="0.01" step="0.01"
+                        <input type="text" class="form-control" placeholder="Name" id="person-name-field">
+                        <input type="number" placeholder="Pre-Tax $" pattern="[0-9]*" inputmode="decimal" min="0.01" step="0.01"
                             class="form-control">
                         <button type="button" class="btn btn-danger" onclick="this.parentNode.remove()"><i
                                 class="bi bi-trash-fill"></i></button>
