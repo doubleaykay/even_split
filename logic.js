@@ -5,9 +5,10 @@ function d2f(d) {
 
 // person line item class
 class Person {
-    constructor(name, preTaxAmount) {
+    constructor(name, preTaxAmount, paymentType) {
         this.name = name
         this.preTaxAmount = preTaxAmount
+        this.paymentType = paymentType
 
         this.contributionPct = null
         this.contributionAmt = null
@@ -104,9 +105,10 @@ function computeBill() {
     frontendList.forEach(person => {
         personName = person.childNodes[1].value
         personTotal = parseFrontendCurrency(person.childNodes[3].value)
+        personPaymentType = person.childNodes[5].value
 
         // put these into a person object and append to a person list!
-        personList.push(new Person(personName, personTotal))
+        personList.push(new Person(personName, personTotal, personPaymentType))
     })
 
     // get tax amount from frontend
@@ -155,6 +157,10 @@ function computeBill() {
     portionedTotal.forEach((contributionAmt, index) => {
         personList[index].contributionAmt = contributionAmt
     })
+
+    // for those paying in cash, ensure they have a round number by refiguring everyone's contributions
+
+    // advanced option: ensure tip is a round number and refigure everyone's contributions
 
     return [personList, thisBill]
 }
