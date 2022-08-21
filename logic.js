@@ -159,6 +159,8 @@ function computeBill() {
     })
 
     // for those paying in cash, ensure they have a round number by refiguring everyone's contributions
+    // peoplePayingCash
+    // peoplePayingExact
 
     // advanced option: ensure tip is a round number and refigure everyone's contributions
 
