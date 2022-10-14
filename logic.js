@@ -12,6 +12,9 @@ class Person {
 
         this.contributionPct = null
         this.contributionAmt = null
+
+        this.roundedCashAmount = null
+        this.newAmt = null
     }
 
     calculatePortion(preTaxTotal) {
@@ -94,6 +97,10 @@ function parseFrontendCurrency(frontendCurrency) {
     }
 }
 
+var GLOBpeoplePayingCash;
+var GLOBpeoplePayingExact;
+var GLOBpersonList;
+
 function computeBill() {
     // create empty people array
     personList = []
@@ -159,8 +166,60 @@ function computeBill() {
     })
 
     // for those paying in cash, ensure they have a round number by refiguring everyone's contributions
-    // peoplePayingCash
-    // peoplePayingExact
+    peoplePayingCash = []
+    peoplePayingExact = []
+
+    personList.forEach(person => {
+        if (person.paymentType == "cash") {
+            peoplePayingCash.push(person)
+        } else if (person.paymentType == "exact") {
+            peoplePayingExact.push(person)
+        }
+    })
+
+    if (peoplePayingCash.length > 0) {
+        // give all cash people a rounded amount
+        peoplePayingCash.forEach(person => {
+            person.roundedCashAmount = person.contributionAmt.toRoundedUnit(0, 'HALF_EVEN')
+        })
+
+        // determine difference between cash people's OG contribution and rounded amount
+        unrounded = peoplePayingCash.reduce((accumulator, object) => {
+            return accumulator.add(object.contributionAmt)
+        }, Dinero({ amount: 0, currency: 'USD' }))
+
+        // get float from Dinero sum
+        unrounded = unrounded.toUnit()
+
+        rounded = peoplePayingCash.reduce((accumulator, object) => {
+            return accumulator + object.roundedCashAmount
+        }, 0)
+
+        // TODO get rounded as a dinero object to avoid floating point issues
+
+        // if unrounded is more than rounded, then others pay more to make up
+        // if unrounded is less than rounded, then others pay less to make up
+        // else, it's the same, and the person list should be returned untouched
+        console.log(unrounded)
+        console.log(rounded)
+
+        diff = unrounded - rounded
+
+        // turn diff into a Dinero amount
+        diffD = Dinero({amount: diff*100})
+
+        // divide diff evenly among each person in peoplePayingExact
+        portionedDiff = diffD.allocate(Array(peoplePayingExact.length).fill([1]).flat())
+
+        // modify each person's contribution amounts
+        portionedDiff.forEach((diffAmt, index) => {
+            peoplePayingExact[index].newAmt = peoplePayingExact[index].contributionAmt.add(diffAmt)
+        })
+    }
+
+    GLOBpeoplePayingCash = peoplePayingCash
+    GLOBpeoplePayingExact = peoplePayingExact
+    GLOBpersonList = personList
 
     // advanced option: ensure tip is a round number and refigure everyone's contributions
 
