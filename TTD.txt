@@ -1,0 +1,36 @@
+high priority
+- currency formatting on tax field (Y)
+- % formatting on results
+- finish cash / rounding feature
+- format results in a neat way
+- format tip field as currency only if a currency type is selected
+    - get the value of the dropdown in the JS function; if contains "$" then format as currency
+- UI: add top menu bar where help, info, and saved bills will go
+- change add person button back to text because that just looks better LOL
+- turn app into a progressive web app that can be installed
+    - manifest
+    - service worker
+    - icons
+    - what else?
+- determine a data structure for bill data
+    - json: {bill info, person array, formatted results}
+
+medium priority
+- share button for individuals
+- share button for all results
+- saved bills feature (local storage) with checkboxes for people
+    - data storage format
+    - display cards representing bills, and have checkboxes
+- change name to something better
+- icons from Dan
+
+low priority
+- make things work offline assuming zero internet connection (serve all CSS and JS instead of depending on external links)
+    - have text defaults if icons cannot load
+- help screen
+- github link
+- attribution
+- change log screen
+- YNAB link?
+- Venmo link?
+- PayPal link?
