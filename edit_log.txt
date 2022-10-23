@@ -1,0 +1,9 @@
+1. updated tax field to format as currency
+2. format tax precentage numbers in results
+3. changed name from "Even Split" and "Proportional Bill Splitter" to "Divvi" everywhere
+4. update to bootstrap 5.2.2
+5. add navbar with page links to saved, settings, help, and about
+6. change add person button back to text instead of an icon
+7. add placeholder HTML files for saved, settings, help, and about pages
+8. fixed cash payment method option
+9. add share functionality for all results
